@@ -61,10 +61,11 @@
 
     <script>
         $(function() {
-            var numOfBlocks = 7; //Math.floor(Math.sqrt($(":not(:has(>div))").length))
+            // var numOfBlocks = Math.ceil(Math.sqrt($(":not(:has(>div))").length)) + 1;
+            var numOfBlocks = Math.ceil(Math.sqrt($(":not(:has(*))").length)) + 1;
 
-            var root = $('div.container');
-            // var root = $('body');
+            // var root = $('div.container');
+            var root = $('body');
             var nodes = getSeparatedNodes(root, numOfBlocks);
             console.log(nodes.length)
             markSelectedBlocks(nodes);
@@ -92,7 +93,8 @@
                 }
 
                 nodes.splice(nodeIndex, 1);
-                $.each($(maxWeightNode).children(), function(index, value) {
+                var children = $(maxWeightNode).children(':not(script)');
+                $.each(children, function(index, value) {
                     nodes.push(value);
                 })
                 

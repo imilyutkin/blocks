@@ -1,5 +1,5 @@
  $(function() {
-        var numOfBlocks = Math.floor(Math.sqrt($(":not(:has(>div))").length));
+        var numOfBlocks = Math.ceil(Math.sqrt($(":not(:has(>div))").length));
 
         var root = $(':eq(0)');
         var nodes = getSeparatedNodes(root, numOfBlocks);
