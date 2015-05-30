@@ -22,9 +22,8 @@
             margin: auto;
         }
         .semBlock{
-            background-color: greenyellow; 
-            opacity: 0.4;
-            filter: alpha(opacity=40);
+            background-color: greenyellow !important;
+            
         }
         #wrapper {
           margin-right: 200px;
@@ -93,7 +92,8 @@
     </div>
 
     <script>
-        $(function() {
+       $(function() {
+            // var numOfBlocks = Math.ceil(Math.sqrt($(":not(:has(>div))").length)) + 1;
             var numOfBlocks = Math.ceil(Math.sqrt($(":not(:has(*))").length)) + 1;
 
             // var root = $('div.container');
@@ -112,11 +112,15 @@
                 var nodeIndex = 0;
 
                 for (var i = 0; i < nodes.length; i++) {
+                    var currentWeight = weight(nodes[i]);
                     if ((weight(nodes[i]) >= weight(maxWeightNode) || $(maxWeightNode).children().length == 1) 
-                        && $(nodes[i]).children().length > 1) {
+                        && $(nodes[i]).children().length > 0) {
                         maxWeightNode = nodes[i];
                         nodeIndex = i;
                     }
+                    if (currentWeight < 1) {
+                        nodes.splice(i, 1)
+                    };
                     console.log(weight(nodes[i]));
                 }
 
